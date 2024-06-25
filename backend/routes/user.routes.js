@@ -2,6 +2,7 @@ import express from "express";
 import { protectRoute } from "../middleware/protectRoute.js";
 import {
   followUnfollowUser,
+  getAllUsers,
   getSuggestedUsers,
   getUserProfile,
   updateUser,
@@ -9,6 +10,7 @@ import {
 
 const router = express.Router();
 
+router.get("/allUsers", protectRoute, getAllUsers);
 router.get("/profile/:username", protectRoute, getUserProfile);
 router.get("/suggested", protectRoute, getSuggestedUsers);
 router.post("/follow/:id", protectRoute, followUnfollowUser);

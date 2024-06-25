@@ -152,3 +152,16 @@ export const updateUser = async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 };
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    if (users.length === 0) {
+      return res.status(404).json([]);
+    }
+    res.status(200).json(users);
+  } catch (error) {
+    console.log("Error in getAllPosts controller", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
